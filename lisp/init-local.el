@@ -111,4 +111,11 @@
 (use-package swift-mode
   :hook (swift-mode . (lambda () (lsp))))
 
+(require 'powerline)
+(powerline-default-theme)
+
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+
 (provide 'init-local)

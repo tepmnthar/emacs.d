@@ -92,7 +92,7 @@
   (add-hook 'prog-mode-hook 'display-line-numbers-mode))
 
 (when (maybe-require-package 'goto-line-preview)
-  (global-set-key [remap goto-line] 'goto-line-preview)
+  ;; (global-set-key [remap goto-line] 'goto-line-preview)
 
   (when (fboundp 'display-line-numbers-mode)
     (defun sanityinc/with-display-line-numbers (f &rest args)
