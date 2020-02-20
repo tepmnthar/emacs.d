@@ -16,7 +16,7 @@
   :url "https://raw.githubusercontent.com/tepmnthar/git-auto-commit-mode/master/git-auto-commit-mode.el")
 
 (load-theme 'cyberpunk)
-(setq global-undo-tree-mode t)
+(global-undo-tree-mode)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -27,15 +27,26 @@
   :ensure nil
   :demand t
   :config
-  ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
-  (use-package pyim-basedict
+
+  ;; ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
+  ;; (use-package pyim-basedict
+  ;;   :ensure nil
+  ;;   :config (pyim-basedict-enable))
+
+  ;; (setq default-input-method "pyim")
+
+  ;; ;; 我使用全拼
+  ;; (setq pyim-default-scheme 'quanpin)
+
+  ;; 激活 wbdict 拼音词库
+  (use-package pyim-wbdict
     :ensure nil
-    :config (pyim-basedict-enable))
+    :config (pyim-wbdict-v98-enable))
 
   (setq default-input-method "pyim")
 
-  ;; 我使用全拼
-  (setq pyim-default-scheme 'quanpin)
+  ;; 我使用五笔
+  (setq pyim-default-scheme 'wubi)
 
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
   ;; 我自己使用的中英文动态切换规则是：
@@ -114,8 +125,18 @@
 (require 'powerline)
 (powerline-default-theme)
 
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
+;; (require 'exwm-randr)
+;; (setq exwm-randr-workspace-output-plist '(1 "default"))
+;; (add-hook 'exwm-randr-screen-change-hook
+;;           (lambda ()
+;;             (start-process-shell-command
+;;              "xrandr" nil "xrandr --output default --auto")))
+;; (exwm-randr-enable)
+
+;; (require 'exwm)
+;; (require 'exwm-config)
+;; (exwm-config-default)
+
+(setq org-reveal-root "file:///Users/tepmnthar/Development/reveal.js")
 
 (provide 'init-local)
