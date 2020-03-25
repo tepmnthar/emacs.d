@@ -389,6 +389,7 @@ typical word processor."
      (ditaa . t)
      (dot . t)
      (emacs-lisp . t)
+     (scheme . t)
      (gnuplot . t)
      (haskell . nil)
      (latex . t)
