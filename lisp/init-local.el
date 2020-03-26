@@ -145,4 +145,6 @@
 
 (setq org-reveal-root "file:///Users/tepmnthar/Development/reveal.js")
 
+(setq ivy-initial-inputs-alist ())
+
 (provide 'init-local)
