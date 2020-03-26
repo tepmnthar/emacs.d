@@ -70,7 +70,7 @@
   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
   ;; 手动安装 posframe 包。
   ;; (setq pyim-page-tooltip 'posframe)
-  (setq pyim-use-tooltip nil)
+  (setq pyim-use-tooltip 'posframe)
 
   ;; 选词框显示5个候选词
   (setq pyim-page-length 5)
@@ -78,6 +78,12 @@
   :bind
   (("M-j" . pyim-convert-string-at-point) ;与 pyim-probe-dynamic-english 配合
    ("C-;" . pyim-delete-word-from-personal-buffer)))
+
+;; 干掉 ivy minibuffer 的 M-j ivy-yank-word keybinding
+(use-package ivy
+  :config
+  (progn
+    (define-key ivy-minibuffer-map (kbd "M-j") nil)))
 
 ;; (setq my-input-methods
 ;;       '("pyim")
