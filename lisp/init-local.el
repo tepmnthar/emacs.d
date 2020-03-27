@@ -145,6 +145,12 @@
 
 (setq org-reveal-root "file:///Users/tepmnthar/Development/reveal.js")
 
-(setq ivy-initial-inputs-alist ())
+
+(use-package counsel
+  :defer t
+  :config
+  (setq ivy-initial-inputs-alist nil))
+
+(delete-selection-mode 1)
 
 (provide 'init-local)
