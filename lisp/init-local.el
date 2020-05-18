@@ -166,10 +166,25 @@
                                  :file-name "%<%Y%m%d%H%M%S>-${slug}"
                                  :head "#+TITLE: ${title}\n"
                                  :unnarrowed t)
-                                ("r" "references" plain (function org-roam--capture-get-point)
+                                ("l" "references (link)" plain (function org-roam--capture-get-point)
                                  "%?"
                                  :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
                                  :head "#+TITLE: ${title}\n#+DATE: %t\n#+ROAM_KEY: %^{ROAM_KEY}\n"
+                                 :unnarrowed t)
+                                ("r" "references (no link)" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :unnarrowed t)
+                                ("i" "indexes" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :unnarrowed t)
+                                ("a" "articals" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "articals/${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
                                  :unnarrowed t)
                                 ("D" "drafts" plain (function org-roam--capture-get-point)
                                  "%?"
