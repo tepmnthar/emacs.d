@@ -201,4 +201,16 @@
               :map org-mode-map
               (("C-c n i" . org-roam-insert))))
 
+(use-package org-journal
+  :ensure t
+  :defer t
+  ;; :init
+  ;; ;; Change default prefix key; needs to be set before loading org-journal
+  ;; (setq org-journal-prefix-key "C-c j ")
+  :config
+  (setq org-journal-dir "~/Documents/InvestmentJournal"
+        org-journal-file-type "weekly"
+        org-journal-start-on-weekday 1
+        org-journal-date-format "%Y-%m-%d %a"))
+
 (provide 'init-local)
