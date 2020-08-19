@@ -209,7 +209,7 @@
   ;; (setq org-journal-prefix-key "C-c j ")
   :config
   (setq org-journal-dir "~/Documents/InvestmentJournal"
-        org-journal-file-type "weekly"
+        org-journal-file-type 'weekly
         org-journal-start-on-weekday 1
         org-journal-date-format "%Y-%m-%d %a"))
 
