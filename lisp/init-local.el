@@ -213,4 +213,22 @@
         org-journal-start-on-weekday 1
         org-journal-date-format "%Y-%m-%d %a"))
 
+(setq org-tag-persistent-alist
+      '((:startgroup)
+        ("Stock")
+        (:grouptags)
+        ("@Good" . ?g)
+        ("@Bad" . ?b)
+        ("@Neutral" . ?n)
+        ("@None" . ?o)
+        (:endgroup)))
+
+(setq org-tag-faces
+      '(
+        ("@Good" . (:foreground "Green" :weight bold))
+        ("@Bad" . (:foreground "Red" :weight bold))
+        ("@Neutral" . (:foreground "Yellow" :weight bold))
+        ("@None" . (:foreground "Gray" :weight bold))
+        ))
+
 (provide 'init-local)
