@@ -116,24 +116,6 @@
   :custom
   (flutter-sdk-path "~/Development/flutter/"))
 
-(use-package lsp-mode
-  :config
-  (require 'lsp-clients)
-  :commands lsp)
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
-
-(use-package lsp-sourcekit
-  :after lsp-mode
-  :config
-  (setenv "SOURCEKIT_TOOLCHAIN_PATH" "/Library/Developer/Toolchains/swift-latest.xctoolchain")
-  (setq lsp-sourcekit-executable (expand-file-name "/Users/tepmnthar/Development/sourcekit-lsp/.build/x86_64-apple-macosx/debug/sourcekit-lsp")))
-
-(use-package swift-mode
-  :hook (swift-mode . (lambda () (lsp))))
-
 (require 'powerline)
 (powerline-default-theme)
 
@@ -239,11 +221,35 @@
         ("@None" . (:foreground "Gray" :weight bold))
         ))
 
+;;; Since Emacs 24.4, electric-indent-mode is enabled by default. In most major modes, this causes RET to reindent the current line and indent the new line, and C-j to insert a newline without indenting.
+;;; Org mode now obeys this minor mode: when electric-indent-mode is enabled, and point is neither in a table nor on a timestamp or a link:
+(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
+;; org-capture
+(add-to-list 'org-capture-templates
+             '("w" "Work-related Task" item
+               (file+headline "~/Documents/work/work.org" "Tasks")
+               "[ ] %?" :empty-lines 1))
+
 (require 'posframe)
 (use-package rime
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
   (rime-share-data-dir "~/Library/Rime"))
+
+;; lsp-mode
+(use-package lsp-mode
+  :hook ((objc-mode . lsp))
+  :commands lsp)
+(use-package lsp-sourcekit
+  :after lsp-mode
+  :config
+  (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
+(use-package swift-mode
+  :hook (swift-mode . (lambda () (lsp))))
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 (provide 'init-local)
