@@ -238,6 +238,9 @@
 
 (require 'posframe)
 (use-package rime
+  :config
+  ;; 这个东西经常有问题，还是直接手动设置了拉倒
+  (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
   :custom
   (default-input-method "rime")
   (rime-show-candidate 'posframe)
