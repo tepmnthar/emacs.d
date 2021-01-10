@@ -143,6 +143,11 @@
 
 (delete-selection-mode 1)
 
+;; ledger mode
+(use-package ledger-mode
+  :config
+  (setq ledger-accounts-file "~/Documents/Bookkeeping/accounts.txt"))
+
 ;; org roam
 (use-package org-roam
   :hook
@@ -229,7 +234,7 @@
 (add-to-list 'org-capture-templates
              '("w" "Work-related Task" item
                (file+headline "~/Documents/work/work.org" "Tasks")
-               "[ ] %?" :empty-lines 1))
+               "[ ] %?" :empty-lines 0))
 
 (require 'posframe)
 (use-package rime
