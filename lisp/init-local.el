@@ -260,4 +260,11 @@
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
+(use-package osx-dictionary
+  :bind
+  (("C-c C-s C-d" . osx-dictionary-search-pointer)
+   ("C-c C-s C-i" . osx-dictionary-search-input)))
+(add-hook 'inf-ruby-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+(add-hook 'inf-ruby-minor-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+
 (provide 'init-local)
