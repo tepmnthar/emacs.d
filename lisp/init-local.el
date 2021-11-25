@@ -112,9 +112,9 @@
 ;;   (dart-enable-analysis-server nil)
 ;;   (dart-sdk-path "/Users/tepmnthar/Development/flutter/bin/cache/dart-sdk/"))
 
-(use-package flutter
-  :custom
-  (flutter-sdk-path "~/Development/flutter/"))
+;; (use-package flutter
+;;   :custom
+;;   (flutter-sdk-path "~/Development/flutter/"))
 
 (require 'powerline)
 (powerline-default-theme)
@@ -150,6 +150,8 @@
 
 ;; org roam
 (use-package org-roam
+  :ensure t
+  :straight (:type git :host github :repo "org-roam/org-roam-v1")
   :hook
   (after-init . org-roam-mode)
   :custom
@@ -254,8 +256,8 @@
   :after lsp-mode
   :config
   (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
-(use-package swift-mode
-  :hook (swift-mode . (lambda () (lsp))))
+;; (use-package swift-mode
+;;   :hook (swift-mode . (lambda () (lsp))))
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
