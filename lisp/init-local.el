@@ -186,6 +186,21 @@
                                  :file-name "drafts/%<%Y%m%d%H%M%S>-${slug}"
                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
                                  :unnarrowed t)
+                                ("cn" "CPA Notes" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "archives/cpa/notes/${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :unnarrowed t)
+                                ("ce" "CPA Examples" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "archives/cpa/examples/${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :unnarrowed t)
+                                ("cf" "CPA Formulas" plain (function org-roam--capture-get-point)
+                                 "%?"
+                                 :file-name "archives/cpa/formulas/${slug}"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :unnarrowed t)
                                 ))
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
