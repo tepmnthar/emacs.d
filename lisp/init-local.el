@@ -79,11 +79,11 @@
 ;;   (("M-j" . pyim-convert-string-at-point) ;与 pyim-probe-dynamic-english 配合
 ;;    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
-;; 干掉 ivy minibuffer 的 M-j ivy-yank-word keybinding
-(use-package ivy
-  :config
-  (progn
-    (define-key ivy-minibuffer-map (kbd "M-j") nil)))
+;; ;; 干掉 ivy minibuffer 的 M-j ivy-yank-word keybinding
+;; (use-package ivy
+;;   :config
+;;   (progn
+;;     (define-key ivy-minibuffer-map (kbd "M-j") nil)))
 ;; ;; isearch mode 里用中文
 ;; (defun toggle-pyim-force-input-chinese ()
 ;;   "切换 pyim 强制中文."
@@ -266,5 +266,8 @@
    ("C-c C-s C-i" . osx-dictionary-search-input)))
 (add-hook 'inf-ruby-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
 (add-hook 'inf-ruby-minor-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+
+;; eww 屏蔽所有图片
+(setq shr-blocked-images ".*")
 
 (provide 'init-local)
