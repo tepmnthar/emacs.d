@@ -186,20 +186,20 @@
                                  :file-name "drafts/%<%Y%m%d%H%M%S>-${slug}"
                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
                                  :unnarrowed t)
-                                ("cn" "CPA Notes" plain (function org-roam--capture-get-point)
+                                ("n" "CPA Notes" plain (function org-roam--capture-get-point)
                                  "%?"
                                  :file-name "archives/cpa/notes/${slug}"
                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
                                  :unnarrowed t)
-                                ("ce" "CPA Examples" plain (function org-roam--capture-get-point)
+                                ("e" "CPA Examples" plain (function org-roam--capture-get-point)
                                  "%?"
                                  :file-name "archives/cpa/examples/${slug}"
                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
                                  :unnarrowed t)
-                                ("cf" "CPA Formulas" plain (function org-roam--capture-get-point)
+                                ("f" "CPA Formulas" plain (function org-roam--capture-get-point)
                                  "%?"
                                  :file-name "archives/cpa/formulas/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                 :head "#+TITLE: ${title}\n#+DATE: %t\n#+STARTUP: showall\n#+OPTIONS: num:nil\n"
                                  :unnarrowed t)
                                 ))
   :bind (:map org-roam-mode-map
@@ -284,5 +284,43 @@
 
 ;; eww 屏蔽所有图片
 (setq shr-blocked-images ".*")
+
+(require 'hydra)
+;; rectangle-mark-mode
+(require 'rect)
+(defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+                                     :color pink
+                                     :post (deactivate-mark))
+  "
+  ^_k_^     _d_elete    _s_tring
+_h_   _l_   _o_k        _y_ank
+  ^_j_^     _n_ew-copy  _r_eset
+^^^^        _e_xchange  _u_ndo
+^^^^        ^ ^         _x_kill
+"
+  ("h" rectangle-backward-char nil)
+  ("l" rectangle-forward-char nil)
+  ("k" rectangle-previous-line nil)
+  ("j" rectangle-next-line nil)
+  ("e" hydra-ex-point-mark nil)
+  ("n" copy-rectangle-as-kill nil)
+  ("d" delete-rectangle nil)
+  ("r" (if (region-active-p)
+           (deactivate-mark)
+         (rectangle-mark-mode 1)) nil)
+  ("y" yank-rectangle nil)
+  ("u" undo nil)
+  ("s" string-rectangle nil)
+  ("x" kill-rectangle nil)
+  ("o" nil nil))
+
+;; Recommended binding:
+(global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+;; avy-goto-char
+(global-set-key (kbd "C-:") 'avy-goto-char)
+
+;; zap-up-to-char
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 (provide 'init-local)
