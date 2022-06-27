@@ -323,4 +323,28 @@ _h_   _l_   _o_k        _y_ank
 ;; zap-up-to-char
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
+;; 复制路径 http://xahlee.info/emacs/emacs/emacs_copy_file_path.html
+(defun xah-copy-file-path (&optional DirPathOnlyQ)
+  (interactive "P")
+  (let (
+        ($fpath
+         (if (string-equal major-mode 'dired-mode)
+             (progn
+               (let (
+                     ($result (mapconcat 'identity (dired-get-marked-files) "\n")))
+                 (if (equal (length $result) 0)
+                     (progn default-directory)
+                   (progn $result))))
+           (if (buffer-file-name)
+               (buffer-file-name)
+             (expand-file-name default-directory)))))
+    (kill-new
+     (if DirPathOnlyQ
+         (progn
+           (message "Directory copied: %s" (file-name-directory $fpath))
+           (file-name-directory $fpath))
+       (progn
+         (message "File path copied: %s" $fpath)
+         $fpath)))))
+
 (provide 'init-local)
