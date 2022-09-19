@@ -347,4 +347,44 @@ _h_   _l_   _o_k        _y_ank
          (message "File path copied: %s" $fpath)
          $fpath)))))
 
+;; lexic
+(use-package lexic
+  :commands lexic-search lexic-list-dictionary
+  :bind (:map lexic-mode-map
+              (("q" . lexic-return-from-lexic)
+               ("RET" . lexic-search-word-at-point)
+               ("a" . outline-show-all)
+               ("h" . (lambda () (interactive) (outline-hide-sublevels 3)))
+               ("o" . lexic-toggle-entry)
+               ("n" . lexic-next-entry)
+               ("N" . (lambda () (interactive) (lexic-next-entry t)))
+               ("p" . lexic-previous-entry)
+               ("P" . (lambda () (interactive) (lexic-previous-entry t)))
+               ("E" . (lambda () (interactive) (lexic-return-from-lexic) ; expand
+                        (switch-to-buffer (lexic-get-buffer))))
+               ("M" . (lambda () (interactive) (lexic-return-from-lexic) ; minimise
+                        (lexic-goto-lexic)))
+               ("C-p" . lexic-search-history-backwards)
+               ("C-n" . lexic-search-history-forwards)
+               ("P" . (lambda () (interactive) (call-interactively #'lexic-search)))))
+  :init
+  (add-hook 'lexic-mode-hook (lambda ()
+                               (setq-local visual-fill-column-center-text nil)
+                               (visual-fill-column-mode nil)))
+  :config
+  (defun lexic--fill-string (str)
+    (with-temp-buffer
+      (insert str)
+      (let ((fill-column 60))
+        (fill-region (point-min) (point-max) nil t t))
+      (buffer-substring (point-min) (point-max))))
+  (defun lexic-format-html (entry &optional _expected-word)
+    (shell-command-to-string (format "echo %s | w3m -T text/html -dump -cols 60" (prin1-to-string (plist-get entry :info)))))
+  (defun lexic-format-oxford (entry &optional _expected-word)
+    (lexic--fill-string (replace-regexp-in-string "\\([0-9]+ \\[.*?\\]\\)" "
+
+\\1" (plist-get entry :info))))
+  (setq lexic-dictionary-specs '(("牛津现代英汉双解词典" :formatter lexic-format-oxford :prioryty 1)
+                                 ("Collins Cobuild 5" :formatter lexic-format-html :priority 2))))
+
 (provide 'init-local)
