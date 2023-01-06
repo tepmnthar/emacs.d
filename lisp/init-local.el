@@ -261,6 +261,11 @@
                (file+headline "~/Documents/work/work.org" "Tasks")
                "[ ] %?" :empty-lines 0))
 
+(add-to-list 'org-capture-templates
+             '("a" "Anki Capture Word" plain
+               (function (lambda nil (goto-char  (point))))
+               "\n* %^{Word} @@html:<br>@@ | %^{Pronounce} |\n%^{Description}%?\n@@html:<style>* { text-align: left; }</style>@@" :empty-lines 1))
+
 (require 'posframe)
 (use-package rime
   :config
