@@ -245,6 +245,12 @@
         ("@None" . (:foreground "Gray" :weight bold))
         ))
 
+;;; org-anki
+(use-package org-anki
+  :ensure t
+  :custom
+  (org-anki-default-deck "emacs-deck"))
+
 ;;; Since Emacs 24.4, electric-indent-mode is enabled by default. In most major modes, this causes RET to reindent the current line and indent the new line, and C-j to insert a newline without indenting.
 ;;; Org mode now obeys this minor mode: when electric-indent-mode is enabled, and point is neither in a table nor on a timestamp or a link:
 (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
