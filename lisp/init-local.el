@@ -155,50 +155,23 @@
   (org-roam-directory "~/Documents/RoamNotes/")
   (org-roam-completion-system 'ivy)
   (org-roam-graph-viewer "open")
-  (org-roam-capture-templates '(("d" "default" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n"
+  (org-roam-capture-templates '(("d" "default" plain "%?"
+                                 :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
                                  :unnarrowed t)
-                                ("l" "references (link)" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n#+ROAM_KEY: %^{ROAM_KEY}\n"
+                                ("l" "references (link)" plain "%?"
+                                 :target (file+head "refs/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %t\n#+ROAM_KEY: %^{ROAM_KEY}\n")
                                  :unnarrowed t)
-                                ("r" "references (no link)" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                ("r" "references (no link)" plain "%?"
+                                 :target (file+head "refs/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %t\n")
                                  :unnarrowed t)
-                                ("i" "indexes" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                ("i" "indexes" plain "%?"
+                                 :target (file+head "${slug}.org" "#+TITLE: ${title}\n#+DATE: %t\n")
                                  :unnarrowed t)
-                                ("a" "articals" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "articals/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
+                                ("a" "articals" plain "%?"
+                                 :target (file+head "articals/${slug}.org" "#+TITLE: ${title}\n#+DATE: %t\n")
                                  :unnarrowed t)
-                                ("D" "drafts" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "drafts/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("n" "CPA Notes" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "archives/cpa/notes/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("e" "CPA Examples" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "archives/cpa/examples/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("f" "CPA Formulas" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "archives/cpa/formulas/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n#+STARTUP: showall\n#+OPTIONS: num:nil\n"
+                                ("D" "drafts" plain "%?"
+                                 :target (file+head "drafts/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %t\n")
                                  :unnarrowed t)
                                 ))
   :bind (("C-c n l" . org-roam-buffer-toggle)
