@@ -375,4 +375,10 @@ _h_   _l_   _o_k        _y_ank
   (setq lexic-dictionary-specs '(("牛津现代英汉双解词典" :formatter lexic-format-oxford :prioryty 1)
                                  ("Collins Cobuild 5" :formatter lexic-format-html :priority 2))))
 
+;; 不要用原来的guide-key及其附带的popwin，会出现popup时delete-other-windows然后又不恢复，还没选项控件这个，有人提issue一个不回一个说为什么不用which-key，是真的离谱
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-right)
+(setq which-key-show-early-on-C-h t)
+
 (provide 'init-local)
