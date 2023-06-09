@@ -381,4 +381,65 @@ _h_   _l_   _o_k        _y_ank
 (which-key-setup-side-window-right)
 (setq which-key-show-early-on-C-h t)
 
+;; 更换为ace-window
+(defun joe-scroll-other-window()
+  (interactive)
+  (scroll-other-window 1))
+(defun joe-scroll-other-window-down ()
+  (interactive)
+  (scroll-other-window-down 1))
+(use-package ace-window
+  :ensure t
+  :defer 1
+  :config
+  (set-face-attribute
+   'aw-leading-char-face nil
+   :foreground "firebrick"
+   :weight 'bold
+   :height 3.0)
+  (set-face-attribute
+   'aw-mode-line-face nil
+   :inherit 'mode-line-buffer-id
+   :foreground "firebrick")
+  (setq aw-keys '(?a ?o ?e ?u ?h ?t ?n ?l) ;'(?a ?s ?d ?f ?j ?k ?l)
+        aw-dispatch-always t
+        ;; aw-dispatch-alist
+        ;; '((?x aw-delete-window "Ace - Delete Window")
+        ;;   (?c aw-swap-window "Ace - Swap Window")
+        ;;   (?n aw-flip-window)
+        ;;   (?v aw-split-window-vert "Ace - Split Vert Window")
+        ;;   (?h aw-split-window-horz "Ace - Split Horz Window")
+        ;;   (?m delete-other-windows "Ace - Maximize Window")
+        ;;   (?g delete-other-windows)
+        ;;   (?b balance-windows)
+        ;;   (?u (lambda ()
+        ;;         (progn
+        ;;           (winner-undo)
+        ;;           (setq this-command 'winner-undo))))
+        ;;   (?r winner-redo))
+        )
+
+  (when (package-installed-p 'hydra)
+    (defhydra hydra-window-size (:color red)
+      "Windows size"
+      ("<left>" shrink-window-horizontally "shrink horizontal")
+      ("<up>" shrink-window "shrink vertical")
+      ("<down>" enlarge-window "enlarge vertical")
+      ("<right>" enlarge-window-horizontally "enlarge horizontal")
+      ("b" balance-windows "balance windows"))
+    ;; (defhydra hydra-window-frame (:color red)
+    ;;   "Frame"
+    ;;   ("f" make-frame "new frame")
+    ;;   ("x" delete-frame "delete frame"))
+    ;; (defhydra hydra-window-scroll (:color red)
+    ;;   "Scroll other window"
+    ;;   ("n" joe-scroll-other-window "scroll")
+    ;;   ("p" joe-scroll-other-window-down "scroll down"))
+    (add-to-list 'aw-dispatch-alist '(?\\ hydra-window-size/body) t)
+    ;; (add-to-list 'aw-dispatch-alist '(?o hydra-window-scroll/body) t)
+    ;; (add-to-list 'aw-dispatch-alist '(?\; hydra-window-frame/body) t)
+    )
+  (ace-window-display-mode t))
+(global-set-key (kbd "C-x o") 'ace-window)
+
 (provide 'init-local)
