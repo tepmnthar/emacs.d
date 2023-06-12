@@ -442,4 +442,10 @@ _h_   _l_   _o_k        _y_ank
   (ace-window-display-mode t))
 (global-set-key (kbd "C-x o") 'ace-window)
 
+;; chatgpt
+(use-package chatgpt-shell
+  :ensure t
+  :custom
+  ((chatgpt-shell-openai-key "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")))
+
 (provide 'init-local)
