@@ -388,6 +388,11 @@ _h_   _l_   _o_k        _y_ank
 (defun joe-scroll-other-window-down ()
   (interactive)
   (scroll-other-window-down 1))
+(defun tep-switch-to-minibuffer ()
+  "Switch to minibuffer window."
+  (interactive)
+  (if (active-minibuffer-window)
+      (select-window (active-minibuffer-window))))
 (use-package ace-window
   :ensure t
   :defer 1
@@ -435,7 +440,10 @@ _h_   _l_   _o_k        _y_ank
     ;;   "Scroll other window"
     ;;   ("n" joe-scroll-other-window "scroll")
     ;;   ("p" joe-scroll-other-window-down "scroll down"))
+    (setq aw-dispatch-alist (list))
+    (add-to-list 'aw-dispatch-alist '(?? aw-show-dispatch-help) t)
     (add-to-list 'aw-dispatch-alist '(?\\ hydra-window-size/body) t)
+    (add-to-list 'aw-dispatch-alist '(?m tep-switch-to-minibuffer) t)
     ;; (add-to-list 'aw-dispatch-alist '(?o hydra-window-scroll/body) t)
     ;; (add-to-list 'aw-dispatch-alist '(?\; hydra-window-frame/body) t)
     )
@@ -446,6 +454,6 @@ _h_   _l_   _o_k        _y_ank
 (use-package chatgpt-shell
   :ensure t
   :custom
-  ((chatgpt-shell-openai-key "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")))
+  ((chatgpt-shell-openai-key "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")))
 
 (provide 'init-local)
