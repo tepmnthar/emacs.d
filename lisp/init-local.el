@@ -468,4 +468,9 @@ _h_   _l_   _o_k        _y_ank
          :key (concat "sk-qVzE1MGB1yaTsBgld" "S62T3BlbkFJazdIgQ8FWA0NqI9PhDct") :chat-model "gpt-3.5-turbo")
         ))
 
+;; zsh
+(setq explicit-shell-file-name "/bin/zsh")
+(setq explicit-zsh-args '("--interactive" "--login"))
+(setenv "LANG" "en_US.UTF-8")
+
 (provide 'init-local)
