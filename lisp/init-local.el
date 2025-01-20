@@ -489,4 +489,8 @@ _h_   _l_   _o_k        _y_ank
                              :argument "--stat"
                              :key "-s"))
 
+;; default font scale
+(setq default-text-scale--complement 90)
+(default-text-scale-reset)
+
 (provide 'init-local)
