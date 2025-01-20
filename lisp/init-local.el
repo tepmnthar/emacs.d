@@ -473,4 +473,20 @@ _h_   _l_   _o_k        _y_ank
 (setq explicit-zsh-args '("--interactive" "--login"))
 (setenv "LANG" "en_US.UTF-8")
 
+;; magit diff range --stat
+;; ;; 这是没办法时的手动方法
+;; (with-eval-after-load 'magit
+;;   (transient-append-suffix 'magit-diff "-x"
+;;     '("-s" "Show stat" "--stat")
+;;     (lambda ()
+;;       (add-to-list 'magit-buffer-diff-args "--stat"))))
+
+;; 这是直接改magit内部方法
+(with-eval-after-load 'magit
+  (transient-define-argument magit-diff:--stat ()
+                             :description "Show stats"
+                             :class 'transient-switch
+                             :argument "--stat"
+                             :key "-s"))
+
 (provide 'init-local)
