@@ -493,4 +493,10 @@ _h_   _l_   _o_k        _y_ank
 (setq default-text-scale--complement 90)
 (default-text-scale-reset)
 
+;; which-key space width bug https://lists.gnu.org/archive/html/bug-gnu-emacs/2024-09/msg01705.html
+(setq which-key-popup-type 'side-window)
+(setq which-key-side-window-location 'right)
+(setq which-key-side-window-max-width 0.75)
+(setq which-key-max-description-length 34)
+
 (provide 'init-local)
