@@ -450,24 +450,6 @@ _h_   _l_   _o_k        _y_ank
   (ace-window-display-mode t))
 (global-set-key (kbd "C-x o") 'ace-window)
 
-;; chatgpt
-(use-package chatgpt-shell
-  :ensure t
-  :custom
-  ((chatgpt-shell-openai-key "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")))
-
-;; ellama
-(use-package ellama
-  :init
-  (setq ellama-language "Simplified Chinese")
-  (require 'llm-ollama)
-  (setq ellama-provider
-        ;; (make-llm-ollama
-        ;;  :chat-model "mistral:7b-text-q5_K_M" :embedding-model "mistral:7b-text-q5_K_M")
-        (make-llm-openai
-         :key (concat "sk-qVzE1MGB1yaTsBgld" "S62T3BlbkFJazdIgQ8FWA0NqI9PhDct") :chat-model "gpt-3.5-turbo")
-        ))
-
 ;; zsh
 (setq explicit-shell-file-name "/bin/zsh")
 (setq explicit-zsh-args '("--interactive" "--login"))
