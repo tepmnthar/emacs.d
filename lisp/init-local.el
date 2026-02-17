@@ -12,11 +12,11 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
-(el-get-bundle tep-git-auto-commit-mode
-  :url "https://raw.githubusercontent.com/tepmnthar/git-auto-commit-mode/master/git-auto-commit-mode.el")
+;; (el-get-bundle tep-git-auto-commit-mode
+;;  :url "https://raw.githubusercontent.com/tepmnthar/git-auto-commit-mode/master/git-auto-commit-mode.el")
 
 (load-theme 'cyberpunk)
-(global-undo-tree-mode)
+;; (global-undo-tree-mode)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -131,10 +131,10 @@
 ;; (require 'exwm-config)
 ;; (exwm-config-default)
 
-(setq org-reveal-root "file:///Users/tepmnthar/Development/reveal.js")
+;; (setq org-reveal-root "file:///Users/tepmnthar/Development/reveal.js")
 
-(setq counsel-spotify-client-id "3e482bc54526410881b0de43c787d14e")
-(setq counsel-spotify-client-secret "71f3ff04a356400797b93ea58d8b51f9")
+;; (setq counsel-spotify-client-id "3e482bc54526410881b0de43c787d14e")
+;; (setq counsel-spotify-client-secret "71f3ff04a356400797b93ea58d8b51f9")
 
 (use-package counsel
   :defer t
@@ -148,125 +148,129 @@
   :config
   (setq ledger-accounts-file "~/Documents/Bookkeeping/accounts.txt"))
 
-;; org roam
-(use-package org-roam
-  :ensure t
-  :straight (:type git :host github :repo "org-roam/org-roam-v1")
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory "~/Documents/RoamNotes/")
-  (org-roam-completion-system 'ivy)
-  (org-roam-graph-viewer "open")
-  (org-roam-capture-templates '(("d" "default" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n"
-                                 :unnarrowed t)
-                                ("l" "references (link)" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n#+ROAM_KEY: %^{ROAM_KEY}\n"
-                                 :unnarrowed t)
-                                ("r" "references (no link)" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("i" "indexes" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("a" "articals" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "articals/${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ("D" "drafts" plain (function org-roam--capture-get-point)
-                                 "%?"
-                                 :file-name "drafts/%<%Y%m%d%H%M%S>-${slug}"
-                                 :head "#+TITLE: ${title}\n#+DATE: %t\n"
-                                 :unnarrowed t)
-                                ))
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n j" . org-roam-jump-to-index)
-               ("C-c n b" . org-roam-switch-to-buffer)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))))
+;; ;; org roam
+;; (use-package org-roam
+;;   :ensure t
+;;   :straight (:type git :host github :repo "org-roam/org-roam-v1")
+;;   :hook
+;;   (after-init . org-roam-mode)
+;;   :custom
+;;   (org-roam-directory "~/Documents/RoamNotes/")
+;;   (org-roam-completion-system 'ivy)
+;;   (org-roam-graph-viewer "open")
+;;   (org-roam-capture-templates '(("d" "default" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+;;                                  :head "#+TITLE: ${title}\n"
+;;                                  :unnarrowed t)
+;;                                 ("l" "references (link)" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
+;;                                  :head "#+TITLE: ${title}\n#+DATE: %t\n#+ROAM_KEY: %^{ROAM_KEY}\n"
+;;                                  :unnarrowed t)
+;;                                 ("r" "references (no link)" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "refs/%<%Y%m%d%H%M%S>-${slug}"
+;;                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
+;;                                  :unnarrowed t)
+;;                                 ("i" "indexes" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "${slug}"
+;;                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
+;;                                  :unnarrowed t)
+;;                                 ("a" "articals" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "articals/${slug}"
+;;                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
+;;                                  :unnarrowed t)
+;;                                 ("D" "drafts" plain (function org-roam--capture-get-point)
+;;                                  "%?"
+;;                                  :file-name "drafts/%<%Y%m%d%H%M%S>-${slug}"
+;;                                  :head "#+TITLE: ${title}\n#+DATE: %t\n"
+;;                                  :unnarrowed t)
+;;                                 ))
+;;   :bind (:map org-roam-mode-map
+;;               (("C-c n l" . org-roam)
+;;                ("C-c n f" . org-roam-find-file)
+;;                ("C-c n j" . org-roam-jump-to-index)
+;;                ("C-c n b" . org-roam-switch-to-buffer)
+;;                ("C-c n g" . org-roam-graph))
+;;               :map org-mode-map
+;;               (("C-c n i" . org-roam-insert))))
 
-(use-package org-journal
-  :ensure t
-  :defer t
-  ;; :init
-  ;; ;; Change default prefix key; needs to be set before loading org-journal
-  ;; (setq org-journal-prefix-key "C-c j ")
-  :config
-  (setq org-journal-dir "~/Documents/InvestmentJournal"
-        org-journal-file-type 'weekly
-        org-journal-start-on-weekday 1
-        org-journal-date-format "%Y-%m-%d %a"))
+;; (use-package org-journal
+;;   :ensure t
+;;   :defer t
+;;   ;; :init
+;;   ;; ;; Change default prefix key; needs to be set before loading org-journal
+;;   ;; (setq org-journal-prefix-key "C-c j ")
+;;   :config
+;;   (setq org-journal-dir "~/Documents/InvestmentJournal"
+;;         org-journal-file-type 'weekly
+;;         org-journal-start-on-weekday 1
+;;         org-journal-date-format "%Y-%m-%d %a"))
 
-(setq org-tag-persistent-alist
-      '((:startgroup)
-        ("Stock")
-        (:grouptags)
-        ("@Good" . ?g)
-        ("@Bad" . ?b)
-        ("@Neutral" . ?n)
-        ("@None" . ?o)
-        (:endgroup)))
+;; (setq org-tag-persistent-alist
+;;       '((:startgroup)
+;;         ("Stock")
+;;         (:grouptags)
+;;         ("@Good" . ?g)
+;;         ("@Bad" . ?b)
+;;         ("@Neutral" . ?n)
+;;         ("@None" . ?o)
+;;         (:endgroup)))
 
-(setq org-tag-faces
-      '(
-        ("@Good" . (:foreground "Green" :weight bold))
-        ("@Bad" . (:foreground "Red" :weight bold))
-        ("@Neutral" . (:foreground "Yellow" :weight bold))
-        ("@None" . (:foreground "Gray" :weight bold))
-        ))
+;; (setq org-tag-faces
+;;       '(
+;;         ("@Good" . (:foreground "Green" :weight bold))
+;;         ("@Bad" . (:foreground "Red" :weight bold))
+;;         ("@Neutral" . (:foreground "Yellow" :weight bold))
+;;         ("@None" . (:foreground "Gray" :weight bold))
+;;         ))
 
-;;; Since Emacs 24.4, electric-indent-mode is enabled by default. In most major modes, this causes RET to reindent the current line and indent the new line, and C-j to insert a newline without indenting.
-;;; Org mode now obeys this minor mode: when electric-indent-mode is enabled, and point is neither in a table nor on a timestamp or a link:
-(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+;; ;;; Since Emacs 24.4, electric-indent-mode is enabled by default. In most major modes, this causes RET to reindent the current line and indent the new line, and C-j to insert a newline without indenting.
+;; ;;; Org mode now obeys this minor mode: when electric-indent-mode is enabled, and point is neither in a table nor on a timestamp or a link:
+;; (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
 
-;; org-capture
-(add-to-list 'org-capture-templates
-             '("w" "Work-related Task" item
-               (file+headline "~/Documents/work/work.org" "Tasks")
-               "[ ] %?" :empty-lines 0))
+;; ;; org-capture
+;; (add-to-list 'org-capture-templates
+;;              '("w" "Work-related Task" item
+;;                (file+headline "~/Documents/work/work.org" "Tasks")
+;;                "[ ] %?" :empty-lines 0))
 
-(require 'posframe)
-(use-package rime
-  :config
-  ;; 这个东西经常有问题，还是直接手动设置了拉倒
-  (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
-  :custom
-  (default-input-method "rime")
-  (rime-show-candidate 'posframe)
-  (rime-share-data-dir "~/Library/Rime"))
+;; (require 'posframe)
+;; (use-package rime
+;;   :config
+;;   ;; 这个东西经常有问题，还是直接手动设置了拉倒
+;;   (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
+;;   :custom
+;;   (default-input-method "rime")
+;;   (rime-show-candidate 'posframe)
+;;   (rime-share-data-dir "~/Library/Rime"))
 
-;; lsp-mode
-(use-package lsp-mode
-  :hook ((objc-mode . lsp))
-  :commands lsp)
-(use-package lsp-sourcekit
-  :after lsp-mode
-  :config
-  (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
-;; (use-package swift-mode
-;;   :hook (swift-mode . (lambda () (lsp))))
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+;; ;; lsp-mode
+;; (use-package lsp-mode
+;;   :hook ((objc-mode . lsp))
+;;   :commands lsp)
+;; (use-package lsp-sourcekit
+;;   :after lsp-mode
+;;   :config
+;;   (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"))
+;; ;; (use-package swift-mode
+;; ;;   :hook (swift-mode . (lambda () (lsp))))
+;; (use-package lsp-ui :commands lsp-ui-mode)
+;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
-(use-package osx-dictionary
-  :bind
-  (("C-c C-s C-d" . osx-dictionary-search-pointer)
-   ("C-c C-s C-i" . osx-dictionary-search-input)))
-(add-hook 'inf-ruby-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
-(add-hook 'inf-ruby-minor-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+;; (use-package osx-dictionary
+;;   :bind
+;;   (("C-c C-s C-d" . osx-dictionary-search-pointer)
+;;    ("C-c C-s C-i" . osx-dictionary-search-input)))
+;; (add-hook 'inf-ruby-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+;; (add-hook 'inf-ruby-minor-mode-hook (lambda () (define-key inf-ruby-minor-mode-map (kbd "C-c C-s") nil)))
+
+;; default font scale
+(setq default-text-scale--complement 120)
+(default-text-scale-reset)
 
 (provide 'init-local)
